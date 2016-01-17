@@ -12,5 +12,4 @@
       FTP_PROXY="ftp://myusername:mypassword@myproxy.example.com:8080"
       NO_PROXY="localhost, 127.0.0.1, 10.0.0.0/8, 192.168.0.0/16"
    D. 国内貌似有镜像源
-      https://zh.opensuse.org/index.php?title=%E8%BD%AF%E4%BB%B6%E6%BA%90%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9&variant=zh
-
+      http://mirrors.ustc.edu.cn/opensuse/factory/repo/...
