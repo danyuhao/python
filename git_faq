@@ -1,0 +1,34 @@
+新开始练习git练得手热，很多问题赶紧趁热打铁记录下来，后面在用org写吧
+
+1. 权限问题
+   A. 使用git更新，rebase代码时， 总显示permission denied或者xxx（不记得了，以后补上）错误，chmod 777 也不管用
+   百度了一下，发现是有的文件所属人是nobody:nobody, 把用户名和组改成git用户就好了
+   B. 我用的这个编译构建系统比较奇葩，git同步代码时需要用自己的用户权限，但是编译时需要用root权限，这样导致很多编译
+   生成的中间文件显示在untracked files里面， 切成自己用户做pull、commit、push时，一通git clean下来，总有N多
+   untracked的狗皮膏药，需要用sudo git  clean -fd才行。
+
+2. 在linux（suse 11 企业版）终端显示中文问题
+   考虑以下三点
+   A. 运行locale命令，查询支持的字符集，确认是包含 zh_CN.UTF-8 的
+   B. 编辑自己用户的bash启动脚本 ~/.bash_profile
+      export LANG="zh_CN.UTF-8"
+      export LC_ALL="zh_CN.UTF-8"
+   C. 编辑自己用户的vim脚本(有时用下vim还是很顺手的) ~/.vimrc
+      let &termencoding=&encoding
+      set fileencodings=:utf8,gbk,utf16,big5
+
+3. 在linux（suse 11 企业版）上使用git diff显示一堆ESC[m之类的乱码符号问题.
+   网上一搜，很多是遇到回车换行在不同系统下不兼容而显示^M的问题
+   修改方法也很直接，直接配置git
+   git config  core.autocrlf true
+   但这样操作之后问题依旧，（乱码少了点，没注意），然后再搜了下找到这个命令
+   export LESS="-erX"
+   问题解决， git diff 居然也能带彩了，不错
+
+4. git查看状态时，模式改变的文件（644-->777(编译时粗暴修改模式导致)）, 
+   也被认为是对文件的修改，而显示在暂存区，哗哗哗一大片，眼都看醉了。
+   修改方法： git config  core.filemode false
+
+
+
+
