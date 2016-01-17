@@ -1,0 +1,14 @@
+公司开发切换到suse系统，于是上网搜了下，感觉suse是个高大上的东西，兴趣随之而来。
+1. 命令行安装软件suse(企业版suse 11)
+   A. zypper，屌炸天 
+   B. zypper使用要添加源，官方有一个强大的源factory repo，貌似蛮有名气的样子
+      sudo zypper ar -f -c http://download.opensuse.org/factory/repo/oss repo-oss
+      sudo zypper ar -f -c http://download.opensuse.org/factory/repo/non-oss repo-non-oss
+      sudo zypper ar -f -c http://download.opensuse.org/factory/repo/debug repo-debug
+   C. 如果在代理下，需要编辑/etc/sysconfig/proxy文件，使能proxy，才能更新源
+      PROXY_ENABLED="yes"
+      HTTP_PROXY="http://myusername:mypassword@myproxy.example.com:8080"
+      HTTPS_PROXY="https://myusername:mypassword@myproxy.example.com:8080"
+      FTP_PROXY="ftp://myusername:mypassword@myproxy.example.com:8080"
+      NO_PROXY="localhost, 127.0.0.1, 10.0.0.0/8, 192.168.0.0/16"
+
