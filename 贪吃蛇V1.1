@@ -1,0 +1,83 @@
+import pygame, sys, random  
+from pygame.locals import *  
+FPS = 15
+WINDOWWIDTH =640
+WINDOWHEIGHT = 480
+CELLSIZE = 20 
+
+class Snake()  
+	def __init__(self, orientation = K_RIGHT, body = []):
+		self.orientation = orientation #初始化蛇头朝向  
+		self.body = body
+	def grow(self):
+	    if self.orientation == K_RIGHT :
+			new_head = right(body[-1])
+		else if self.orientation == K_LEFT :
+			new_head = left(body[-1])
+	    else if self.orientation == K_UP :
+			new_head = up(body[-1])
+		else if self.orientation == K_DOWN :
+			new_head = down(body[-1])
+			return new_head
+		for coord in self.body #咬到自己，死
+			if coord == new_head
+				die()
+		else  # moveto next pos
+		    body.push(next_pos) #  下一个移动的位置移动到新节点
+		return new_head
+	def die(self):
+		print("Game over")
+	def take_a_step(self)
+		body.pop(self.body[0])
+	def crashed(self, pos)
+		for coord in self.body #咬到自己，死
+			if coord == pos
+				return True
+		return False
+		
+class Cage():
+	def __init__(self, snake, top_x=0, top_y=0, width = 800, height = 600):
+		self.top_x = top_x
+		self.top_y = top_y
+		self.height = height
+		self.width = width
+		spawn_food(snake)
+	def spawn_food(self, snake)
+		self.feed = x,y
+def drawCage(cage):
+	pass
+def drawSnake(snake):	
+	
+def main():
+    global FPSCLOCK, DISPLAYSURF, BASICFONT
+ 
+    pygame.init()
+	FPSCLOCK = pygame.time.Clock()
+    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+	DISPLAYSURF.fill(BGCOLOR)
+	#BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+	
+	snake = Snake(K_RIGHT,[(2,2),(2,1)])
+	cage = Cage(snake,0,0,WINDOWWIDTH,WINDOWHEIGHT)  
+	while True:
+		for event in pygame.event.get(): 
+			if event.type == KEYDOWN 
+				if event.key == K_LEFT or event.key == K_RIGHT or event.key == K_UP or event.key == K_DOWN : 
+					snake.orientation = event.key
+		snake.grow()
+		for x in cage.top.xrange for y in cage.top.yield:
+			if snake.crashed(x):
+				snake.die()
+				sys.exit()
+		if snake.crashed(cage.feed):
+			cage.spawn_food(snake)
+		else: 
+			snake.take_a_step()
+		drawCage(cage)
+		drawSnake(snake)
+		pygame.display.update()
+		mainClock.tick(10)  
+    
+if __name__ == '__main__':
+    main()
+	
